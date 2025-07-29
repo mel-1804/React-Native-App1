@@ -9,10 +9,17 @@ import {
   TouchableOpacity,
   Pressable,
 } from 'react-native'
-
-import icon from './assets/icon.png'
+import { getLatestGames } from './lib/metacritic'
 
 export default function App() {
+  const [games, setGames] = useState([])
+
+  useEffect(() => {
+    getLatestGames().then((games) => {
+      setGames(games)
+    })
+  }, [])
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
